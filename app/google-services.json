@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "389939183814",
+    "firebase_url": "https://button-war-cccf2-default-rtdb.firebaseio.com",
+    "project_id": "button-war-cccf2",
+    "storage_bucket": "button-war-cccf2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:389939183814:android:e87205699ae7191295d7c7",
+        "android_client_info": {
+          "package_name": "com.geta.buttonwar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "389939183814-4km56ds2dd770o3nlegbk4hrjml9733a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOGyeszPveDVK8ShJo5Fk4HsQc2Jai5P0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "389939183814-4km56ds2dd770o3nlegbk4hrjml9733a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
