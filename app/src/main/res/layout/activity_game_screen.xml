@@ -12,32 +12,72 @@
         android:layout_height="wrap_content"
         android:text="A vos bouttons"
         android:textSize="26dp"
+        app:layout_constraintBottom_toTopOf="@+id/gameTime"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
-        android:layout_width="409dp"
-        android:layout_height="729dp"
-        android:layout_marginTop="19dp"
-        android:orientation="horizontal"
+    <EditText
+        android:id="@+id/gameTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:ems="10"
+        android:inputType="time"
+        android:minHeight="48dp"
+        app:layout_constraintBottom_toTopOf="@+id/score1"
+        app:layout_constraintEnd_toEndOf="@+id/textView"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/score1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="score1"
+        app:layout_constraintBottom_toTopOf="@+id/playersBar1"
+        app:layout_constraintEnd_toEndOf="@+id/gameTime"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/gameTime"
+        app:layout_constraintTop_toBottomOf="@+id/gameTime" />
+
+    <ProgressBar
+        android:id="@+id/playersBar1"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="200dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="50dp"
+        app:layout_constraintBottom_toTopOf="@+id/score2"
+        app:layout_constraintEnd_toEndOf="@+id/gameTime"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/gameTime"
+        app:layout_constraintTop_toBottomOf="@+id/score1" />
+
+    <TextView
+        android:id="@+id/score2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="score2"
+        app:layout_constraintBottom_toTopOf="@+id/playerBar2"
+        app:layout_constraintEnd_toEndOf="@+id/gameTime"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/gameTime"
+        app:layout_constraintTop_toBottomOf="@+id/playersBar1" />
+
+    <ProgressBar
+        android:id="@+id/playerBar2"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="200dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView">
+        app:layout_constraintEnd_toEndOf="@+id/gameTime"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/gameTime"
+        app:layout_constraintTop_toBottomOf="@+id/score2" />
 
-        <TextView
-            android:id="@+id/textViewScore1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="score1" />
-
-        <TextView
-            android:id="@+id/textViewScore2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Score2" />
-    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
