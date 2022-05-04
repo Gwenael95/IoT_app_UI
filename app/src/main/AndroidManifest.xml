@@ -11,7 +11,7 @@
         android:theme="@style/Theme.ButtonWar">
         <activity
             android:name=".ResultActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".GameScreen"
             android:exported="false" />
