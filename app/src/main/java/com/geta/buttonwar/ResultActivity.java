@@ -34,7 +34,7 @@ public class ResultActivity extends AppCompatActivity {
         }else if(PtJoueur1> PtJoueur2){
             resulat.setText("Joueur 1 a gagné");
         }else{
-            resulat.setText("égalité");
+            resulat.setText("égalitéé");
         }
 
     }
