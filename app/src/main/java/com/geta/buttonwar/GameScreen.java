@@ -25,8 +25,6 @@ import android.os.Handler;
 
 public class GameScreen extends AppCompatActivity {
 
-    int scorePlayer1 =0;
-    int scorePlayer2 =0;
 
     private void setMaxBar(int scorePlayer1, int scorePlayer2, ProgressBar playerBar1, ProgressBar playerBar2){
         if (scorePlayer1 > scorePlayer2) {
@@ -44,14 +42,12 @@ public class GameScreen extends AppCompatActivity {
     int i = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_screen);
 
         ProgressBar playerBar1 = findViewById(R.id.scoreBar1);
         ProgressBar playerBar2 = findViewById(R.id.scoreBar2);
-
-        scorePlayer1 = playerBar1.getProgress();
-        scorePlayer2 = playerBar2.getProgress();
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         TextView scoreJ1 = findViewById(R.id.score1);
@@ -67,15 +63,17 @@ public class GameScreen extends AppCompatActivity {
                     return;
                 }
 
+                int s1 = 0;
+                int s2 = 0;
                 if (snapshot != null && snapshot.exists()) {
                     scoreJ1.setText(snapshot.getData().get("scoreJ1").toString());
                     scoreJ2.setText(snapshot.getData().get("scoreJ2").toString());
-                    scorePlayer1+=Integer.parseInt((String) scoreJ1.getText());
-                    Log.i("score bar j1", String.valueOf(scorePlayer1));
-                    scorePlayer2+=Integer.parseInt((String) scoreJ2.getText());
-                    setMaxBar(scorePlayer1, scorePlayer2, playerBar1, playerBar2);
-                    playerBar1.setProgress(scorePlayer1);
-                    playerBar2.setProgress(scorePlayer2);
+                    s1+=Integer.parseInt((String) scoreJ1.getText());
+                    s2+=Integer.parseInt((String) scoreJ2.getText());
+                    Log.i("score bar j1", String.valueOf(s1));
+                    setMaxBar(s1, s2, playerBar1, playerBar2);
+                    playerBar1.setProgress(s1);
+                    playerBar2.setProgress(s2);
                     Log.i("Listen réussie", "Current data: " + snapshot.getData());
                 } else {
                     Log.i("Listen NULL", "Current data: null");
