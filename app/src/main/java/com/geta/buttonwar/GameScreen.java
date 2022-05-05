@@ -68,11 +68,14 @@ public class GameScreen extends AppCompatActivity {
                 }
 
                 if (snapshot != null && snapshot.exists()) {
+                    scoreJ1.setText(snapshot.getData().get("scoreJ1").toString());
+                    scoreJ2.setText(snapshot.getData().get("scoreJ2").toString());
+                    scorePlayer1+=Integer.parseInt((String) scoreJ1.getText());
+                    Log.i("score bar j1", String.valueOf(scorePlayer1));
+                    scorePlayer2+=Integer.parseInt((String) scoreJ2.getText());
                     setMaxBar(scorePlayer1, scorePlayer2, playerBar1, playerBar2);
                     playerBar1.setProgress(scorePlayer1);
                     playerBar2.setProgress(scorePlayer2);
-                    scoreJ1.setText(snapshot.getData().get("scoreJ1").toString());
-                    scoreJ2.setText(snapshot.getData().get("scoreJ2").toString());
                     Log.i("Listen réussie", "Current data: " + snapshot.getData());
                 } else {
                     Log.i("Listen NULL", "Current data: null");
