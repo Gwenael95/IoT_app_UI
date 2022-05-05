@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
@@ -42,6 +43,8 @@ public class GameScreen extends AppCompatActivity {
     int i = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        final MediaPlayer countDownMp = MediaPlayer.create(this, R.raw.count_down);
+        final MediaPlayer endMp = MediaPlayer.create(this, R.raw.theend);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_screen);
@@ -90,14 +93,25 @@ public class GameScreen extends AppCompatActivity {
          // Timer
          new CountDownTimer(dureeConverti, 1000) {
             public void onTick(long millisUntilFinished) {
-                gameTime.setText("seconds remaining: " + millisUntilFinished / 1000);
+                int tempsRestant = (int) (millisUntilFinished / 1000);
+                gameTime.setText("seconds remaining: " + tempsRestant);
+                if(tempsRestant == 3) {
+                    countDownMp.start();
+                }
             }
 
             public void onFinish() {
-                Intent intent = new Intent(GameScreen.this, ResultActivity.class);
-                intent.putExtra("scoreJ1", Integer.parseInt((String) scoreJ1.getText()));
-                intent.putExtra("scoreJ2", Integer.parseInt((String) scoreJ2.getText()));
-                startActivity(intent);
+                endMp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+
+                    @Override
+                    public void onCompletion(MediaPlayer mp) {
+                        Intent intent = new Intent(GameScreen.this, ResultActivity.class);
+                        intent.putExtra("scoreJ1", Integer.parseInt((String) scoreJ1.getText()));
+                        intent.putExtra("scoreJ2", Integer.parseInt((String) scoreJ2.getText()));
+                        startActivity(intent);
+                    }
+                });
+                endMp.start();
             }
         }.start();
     }

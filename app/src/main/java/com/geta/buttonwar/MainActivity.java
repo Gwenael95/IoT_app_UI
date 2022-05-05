@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     Button button;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        final MediaPlayer mp = MediaPlayer.create(this, R.raw.go);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         button = findViewById(R.id.btn);
@@ -47,7 +49,18 @@ public class MainActivity extends AppCompatActivity {
                         .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                             @Override
                             public void onSuccess(DocumentReference documentReference) {
-                                Log.i("added", "DocumentSnapshot added with ID: ");
+                                mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+
+                                    @Override
+                                    public void onCompletion(MediaPlayer mp) {
+                                        Intent intent = new Intent(MainActivity.this, GameScreen.class);
+                                        intent.putExtra("dureeParty", Integer.parseInt(duree));
+                                        startActivity(intent);
+                                        Log.i("added", "DocumentSnapshot added with ID: ");
+                                    }
+                                });
+
+                                mp.start();
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {
@@ -56,9 +69,6 @@ public class MainActivity extends AppCompatActivity {
                                 Log.i("TAG", "Error adding document", e);
                             }
                         });
-                Intent intent = new Intent(MainActivity.this, GameScreen.class);
-                intent.putExtra("dureeParty", Integer.parseInt(duree));
-                startActivity(intent);
             }
         });
     }
