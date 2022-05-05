@@ -4,11 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.CountDownTimer;
-import android.renderscript.ScriptGroup;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(MainActivity.this, GameScreen.class);
+                Intent intent = new Intent(MainActivity.this, ProgressBarTest.class);
                 startActivity(intent);
             }
         });
