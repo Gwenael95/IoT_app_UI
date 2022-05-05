@@ -14,9 +14,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -53,7 +51,6 @@ public class MainActivity extends AppCompatActivity {
                                 Log.i("TAG", "Error adding document", e);
                             }
                         });
-
                 Intent intent = new Intent(MainActivity.this, GameScreen.class);
                 startActivity(intent);
             }

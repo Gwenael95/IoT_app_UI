@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
@@ -17,6 +18,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import android.os.CountDownTimer;
+import android.widget.TextView;
 
 public class GameScreen extends AppCompatActivity {
 
@@ -26,6 +29,8 @@ public class GameScreen extends AppCompatActivity {
         setContentView(R.layout.activity_game_screen);
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
+        TextView scoreJ1 = findViewById(R.id.score1);
+        TextView scoreJ2 = findViewById(R.id.score2);
 
         final DocumentReference docRef = db.collection("Score").document("z5hykmgfjeS8BqryAojK");
         docRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
@@ -38,11 +43,7 @@ public class GameScreen extends AppCompatActivity {
                 }
 
                 if (snapshot != null && snapshot.exists()) {
-                    TextView scoreJ1;
-                    scoreJ1 = findViewById(R.id.score1);
                     scoreJ1.setText(snapshot.getData().get("scoreJ1").toString());
-                    TextView scoreJ2;
-                    scoreJ2 = findViewById(R.id.score2);
                     scoreJ2.setText(snapshot.getData().get("scoreJ2").toString());
                     Log.i("Listen réussie", "Current data: " + snapshot.getData());
                 } else {
@@ -51,6 +52,18 @@ public class GameScreen extends AppCompatActivity {
             }
         });
 
+        TextView gameTime= findViewById(R.id.gameTime);
+         new CountDownTimer(60000, 1000) {
+            public void onTick(long millisUntilFinished) {
+                gameTime.setText("seconds remaining: " + millisUntilFinished / 1000);
+            }
 
+            public void onFinish() {
+                Intent intent = new Intent(GameScreen.this, ResultActivity.class);
+                intent.putExtra("scoreJ1", Integer.parseInt((String) scoreJ1.getText()));
+                intent.putExtra("scoreJ2", Integer.parseInt((String) scoreJ2.getText()));
+                startActivity(intent);
+            }
+        }.start();
     }
 }
