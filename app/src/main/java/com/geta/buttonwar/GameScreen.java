@@ -84,7 +84,7 @@ public class GameScreen extends AppCompatActivity {
         TextView gameTime= findViewById(R.id.gameTime);
 
          // Timer
-         new CountDownTimer(6000, 1000) {
+         new CountDownTimer(15000, 1000) {
             public void onTick(long millisUntilFinished) {
                 gameTime.setText("seconds remaining: " + millisUntilFinished / 1000);
             }

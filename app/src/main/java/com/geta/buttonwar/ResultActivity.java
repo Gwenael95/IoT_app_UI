@@ -45,7 +45,7 @@ public class ResultActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Map<String, Object> party = new HashMap<>();
                 party.put("dateParty", LocalDateTime.now());
-                party.put("dureeParty", 60);
+                party.put("dureeParty", 15);
                 party.put("scoreJ1", 0);
                 party.put("scoreJ2", 0);
                 party.put("scoreJ3", 0);
@@ -70,11 +70,11 @@ public class ResultActivity extends AppCompatActivity {
         ptJ1.setText(Integer.toString(PtJoueur1));
         ptJ2.setText(Integer.toString(PtJoueur2));
         if (PtJoueur1< PtJoueur2){
-            result1.setText("Joueur 1 a gagné");
-            result2.setText("Joueur 2 a perdu");
-        }else if(PtJoueur1> PtJoueur2){
             result1.setText("Joueur 2 a gagné");
             result2.setText("Joueur 1 a perdu");
+        }else if(PtJoueur1> PtJoueur2){
+            result1.setText("Joueur 1 a gagné");
+            result2.setText("Joueur 2 a perdu");
         }else{
             result1.setText("Egalité");
             result2.setText("Egalité");

@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
                 Map<String, Object> party = new HashMap<>();
                 party.put("dateParty", LocalDateTime.now());
-                party.put("dureeParty", 60);
+                party.put("dureeParty", 15);
                 party.put("scoreJ1", 0);
                 party.put("scoreJ2", 0);
                 party.put("scoreJ3", 0);
