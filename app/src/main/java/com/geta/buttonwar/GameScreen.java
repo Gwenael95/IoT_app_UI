@@ -24,11 +24,34 @@ import android.widget.TextView;
 import android.os.Handler;
 
 public class GameScreen extends AppCompatActivity {
+
+    int scorePlayer1 =0;
+    int scorePlayer2 =0;
+
+    private void setMaxBar(int scorePlayer1, int scorePlayer2, ProgressBar playerBar1, ProgressBar playerBar2){
+        if (scorePlayer1 > scorePlayer2) {
+            playerBar2.setMax(scorePlayer1);
+            playerBar1.setMax(scorePlayer1);
+            //scoreP2.setText(scorePlayer2 + "/" + playerBar2.getMax());
+        } else if (scorePlayer1 < scorePlayer2) {
+            playerBar2.setMax(scorePlayer2);
+            playerBar1.setMax(scorePlayer2);
+            //scoreP1.setText(scorePlayer1 + "/" + playerBar1.getMax());
+        }
+    }
+
+
     int i = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_screen);
+
+        ProgressBar playerBar1 = findViewById(R.id.scoreBar1);
+        ProgressBar playerBar2 = findViewById(R.id.scoreBar2);
+
+        scorePlayer1 = playerBar1.getProgress();
+        scorePlayer2 = playerBar2.getProgress();
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         TextView scoreJ1 = findViewById(R.id.score1);
@@ -45,6 +68,9 @@ public class GameScreen extends AppCompatActivity {
                 }
 
                 if (snapshot != null && snapshot.exists()) {
+                    setMaxBar(scorePlayer1, scorePlayer2, playerBar1, playerBar2);
+                    playerBar1.setProgress(scorePlayer1);
+                    playerBar2.setProgress(scorePlayer2);
                     scoreJ1.setText(snapshot.getData().get("scoreJ1").toString());
                     scoreJ2.setText(snapshot.getData().get("scoreJ2").toString());
                     Log.i("Listen réussie", "Current data: " + snapshot.getData());
@@ -55,9 +81,7 @@ public class GameScreen extends AppCompatActivity {
         });
 
         TextView gameTime= findViewById(R.id.gameTime);
-        ProgressBar playerBar1 = findViewById(R.id.playersBar1);
-        TextView score1= findViewById(R.id.score1);
-         Handler hdlr = new Handler();
+
          // Timer
          new CountDownTimer(60000, 1000) {
             public void onTick(long millisUntilFinished) {
@@ -71,28 +95,5 @@ public class GameScreen extends AppCompatActivity {
                 startActivity(intent);
             }
         }.start();
-
-        // Progress bar update
-        i = playerBar1.getProgress();
-        new Thread(new Runnable() {
-            public void run() {
-                while (i < 100) {
-                    i += 1;
-                    // Update the progress bar and display the current value in text view
-                    hdlr.post(new Runnable() {
-                        public void run() {
-                            playerBar1.setProgress(i);
-                            score1.setText(i+"/"+playerBar1.getMax());
-                        }
-                    });
-                    try {
-                        // Sleep for 1000 milliseconds to show the progress slowly.
-                        Thread.sleep(500);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        }).start();
     }
 }
