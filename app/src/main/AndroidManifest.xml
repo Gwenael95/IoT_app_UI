@@ -13,7 +13,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ButtonWar">
         <activity
+<<<<<<< HEAD
             android:name=".ResultActivity"
+=======
+            android:name=".ProgressBarTest"
+>>>>>>> origin/score_UI
             android:exported="false" />
         <activity
             android:name=".GameScreen"
