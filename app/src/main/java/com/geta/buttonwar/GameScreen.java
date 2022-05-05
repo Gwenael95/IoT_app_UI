@@ -46,6 +46,8 @@ public class GameScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_screen);
 
+        int dureeParty = getIntent().getIntExtra("dureeParty", 0);
+
         ProgressBar playerBar1 = findViewById(R.id.scoreBar1);
         ProgressBar playerBar2 = findViewById(R.id.scoreBar2);
 
@@ -83,8 +85,10 @@ public class GameScreen extends AppCompatActivity {
 
         TextView gameTime= findViewById(R.id.gameTime);
 
+        int dureeConverti = dureeParty * 1000;
+
          // Timer
-         new CountDownTimer(60000, 1000) {
+         new CountDownTimer(dureeConverti, 1000) {
             public void onTick(long millisUntilFinished) {
                 gameTime.setText("seconds remaining: " + millisUntilFinished / 1000);
             }

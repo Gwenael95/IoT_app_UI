@@ -19,6 +19,7 @@ import java.util.HashMap;
 import java.util.Map;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -36,7 +37,8 @@ public class MainActivity extends AppCompatActivity {
 
                 Map<String, Object> party = new HashMap<>();
                 party.put("dateParty", LocalDateTime.now());
-                party.put("dureeParty", 60);
+                String duree = ((EditText)findViewById(R.id.editTextDuree)).getText().toString();
+                party.put("dureeParty", Integer.parseInt(duree));
                 party.put("scoreJ1", 0);
                 party.put("scoreJ2", 0);
                 party.put("scoreJ3", 0);
@@ -55,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
                             }
                         });
                 Intent intent = new Intent(MainActivity.this, GameScreen.class);
+                intent.putExtra("dureeParty", Integer.parseInt(duree));
                 startActivity(intent);
             }
         });

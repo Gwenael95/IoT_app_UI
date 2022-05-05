@@ -36,27 +36,7 @@ public class ResultActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Map<String, Object> party = new HashMap<>();
-                party.put("dateParty", LocalDateTime.now());
-                party.put("dureeParty", 60);
-                party.put("scoreJ1", 0);
-                party.put("scoreJ2", 0);
-                party.put("scoreJ3", 0);
-                db.collection("Partie")
-                        .add(party)
-                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                            @Override
-                            public void onSuccess(DocumentReference documentReference) {
-                                Log.i("added", "DocumentSnapshot added with ID: ");
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Log.i("TAG", "Error adding document", e);
-                            }
-                        });
-                Intent intent = new Intent(ResultActivity.this, GameScreen.class);
+                Intent intent = new Intent(ResultActivity.this, MainActivity.class);
                 startActivity(intent);
             }
         });
