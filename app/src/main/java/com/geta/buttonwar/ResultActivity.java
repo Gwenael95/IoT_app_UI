@@ -22,8 +22,7 @@ import java.util.Map;
 public class ResultActivity extends AppCompatActivity {
 
     Button button;
-    TextView result1;
-    TextView result2;
+    TextView result;
     TextView ptJ1;
     TextView ptJ2;
 
@@ -36,33 +35,12 @@ public class ResultActivity extends AppCompatActivity {
         setContentView(R.layout.activity_result);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         button = findViewById(R.id.replay);
-        result1 = findViewById(R.id.result1);
-        result2 = findViewById(R.id.result2);
+        result = findViewById(R.id.result1);
         ptJ1 = findViewById(R.id.pointJ1);
         ptJ2 = findViewById(R.id.pointJ2);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Map<String, Object> party = new HashMap<>();
-                party.put("dateParty", LocalDateTime.now());
-                party.put("dureeParty", 15);
-                party.put("scoreJ1", 0);
-                party.put("scoreJ2", 0);
-                party.put("scoreJ3", 0);
-                db.collection("Partie")
-                        .add(party)
-                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                            @Override
-                            public void onSuccess(DocumentReference documentReference) {
-                                Log.i("added", "DocumentSnapshot added with ID: ");
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Log.i("TAG", "Error adding document", e);
-                            }
-                        });
                 Intent intent = new Intent(ResultActivity.this, MainActivity.class);
                 startActivity(intent);
             }
@@ -70,11 +48,11 @@ public class ResultActivity extends AppCompatActivity {
         ptJ1.setText(Integer.toString(PtJoueur1) + " pts");
         ptJ2.setText(Integer.toString(PtJoueur2) + " pts");
         if (PtJoueur1< PtJoueur2){
-            result1.setText("Joueur 2 a gagné");
+            result.setText("Joueur 2 a gagné");
         }else if(PtJoueur1> PtJoueur2){
-            result1.setText("Joueur 1 a gagné");
+            result.setText("Joueur 1 a gagné");
         }else{
-            result2.setText("Egalité");
+            result.setText("Egalité");
         }
 
     }
