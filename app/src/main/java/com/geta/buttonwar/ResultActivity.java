@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -31,6 +32,8 @@ public class ResultActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         int PtJoueur1 = getIntent().getIntExtra("scoreJ1", 0);
         int PtJoueur2 = getIntent().getIntExtra("scoreJ2", 0);
+        final MediaPlayer endMp = MediaPlayer.create(this, R.raw.theend);
+        endMp.start();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
         FirebaseFirestore db = FirebaseFirestore.getInstance();

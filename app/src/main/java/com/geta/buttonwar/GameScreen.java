@@ -8,9 +8,12 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -23,6 +26,10 @@ import android.os.CountDownTimer;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.os.Handler;
+
+import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
 
 public class GameScreen extends AppCompatActivity {
 
@@ -43,18 +50,40 @@ public class GameScreen extends AppCompatActivity {
     int i = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        int dureeParty = getIntent().getIntExtra("dureeParty", 0);
+        Map<String, Object> party = new HashMap<>();
+        party.put("dateParty", LocalDateTime.now());
+        party.put("dureeParty", dureeParty);
+        party.put("scoreJ1", 0);
+        party.put("scoreJ2", 0);
+        party.put("scoreJ3", 0);
+        db.collection("Partie")
+                .add(party)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        Log.i("added", "DocumentSnapshot added with ID: ");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.i("TAG", "Error adding document", e);
+                    }
+                });
+
+
         final MediaPlayer countDownMp = MediaPlayer.create(this, R.raw.count_down);
-        final MediaPlayer endMp = MediaPlayer.create(this, R.raw.theend);
+       // final MediaPlayer endMp = MediaPlayer.create(this, R.raw.theend);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_screen);
 
-        int dureeParty = getIntent().getIntExtra("dureeParty", 0);
-
         ProgressBar playerBar1 = findViewById(R.id.scoreBar1);
         ProgressBar playerBar2 = findViewById(R.id.scoreBar2);
 
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
         TextView scoreJ1 = findViewById(R.id.score1);
         TextView scoreJ2 = findViewById(R.id.score2);
 
@@ -101,17 +130,17 @@ public class GameScreen extends AppCompatActivity {
             }
 
             public void onFinish() {
-                endMp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-
-                    @Override
-                    public void onCompletion(MediaPlayer mp) {
+//                endMp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+//
+//                    @Override
+//                    public void onCompletion(MediaPlayer mp) {
                         Intent intent = new Intent(GameScreen.this, ResultActivity.class);
                         intent.putExtra("scoreJ1", Integer.parseInt((String) scoreJ1.getText()));
                         intent.putExtra("scoreJ2", Integer.parseInt((String) scoreJ2.getText()));
                         startActivity(intent);
-                    }
-                });
-                endMp.start();
+                //    }
+              //  });
+              //  endMp.start();
             }
         }.start();
     }
