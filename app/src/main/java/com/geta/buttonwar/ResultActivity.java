@@ -22,8 +22,7 @@ import java.util.Map;
 public class ResultActivity extends AppCompatActivity {
 
     Button button;
-    TextView result1;
-    TextView result2;
+    TextView result;
     TextView ptJ1;
     TextView ptJ2;
 
@@ -36,10 +35,9 @@ public class ResultActivity extends AppCompatActivity {
         setContentView(R.layout.activity_result);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         button = findViewById(R.id.replay);
-        result1 = findViewById(R.id.result1);
-        result2 = findViewById(R.id.result2);
-        ptJ1 = findViewById(R.id.pointJ1);
-        ptJ2 = findViewById(R.id.pointJ2);
+        result = findViewById(R.id.result1);
+        ptJ1 = findViewById(R.id.nbrPt1);
+        ptJ2 = findViewById(R.id.nbrPt2);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -67,17 +65,14 @@ public class ResultActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        ptJ1.setText(Integer.toString(PtJoueur1));
-        ptJ2.setText(Integer.toString(PtJoueur2));
+        ptJ1.setText(Integer.toString(PtJoueur1) + " pts");
+        ptJ2.setText(Integer.toString(PtJoueur2) + " pts");
         if (PtJoueur1< PtJoueur2){
-            result1.setText("Joueur 2 a gagné");
-            result2.setText("Joueur 1 a perdu");
+            result.setText("Joueur 2 a gagné");
         }else if(PtJoueur1> PtJoueur2){
-            result1.setText("Joueur 1 a gagné");
-            result2.setText("Joueur 2 a perdu");
+            result.setText("Joueur 1 a gagné");
         }else{
-            result1.setText("Egalité");
-            result2.setText("Egalité");
+            result.setText("Egalité");
         }
 
     }

@@ -7,30 +7,25 @@
     android:animateLayoutChanges="false"
     tools:context=".ResultActivity">
 
-    <TextView
-        android:id="@+id/result1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="84dp"
-        android:layout_marginTop="136dp"
-        android:background="@drawable/box"
-        android:padding="10dp"
-        android:textAlignment="center"
-        android:textColor="#675353"
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="103dp"
+        android:layout_height="104dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView5"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="J1 a gagné avec" />
+        app:layout_constraintTop_toTopOf="@+id/textView5"
+        app:srcCompat="@drawable/button" />
 
     <TextView
-        android:id="@+id/result2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="84dp"
-        android:layout_marginTop="300dp"
-        android:background="@drawable/box2"
-        android:padding="10dp"
+        android:id="@+id/result1"
+        android:layout_width="161dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="144dp"
+        android:background="@drawable/box"
         android:textAlignment="center"
-        android:textColor="#504040"
+        android:textColor="#675353"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="J1 a gagné avec" />
@@ -43,29 +38,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/result2" />
-
-    <TextView
-        android:id="@+id/pointJ1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="@+id/result1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.544"
-        app:layout_constraintStart_toEndOf="@+id/result1"
-        app:layout_constraintTop_toTopOf="@+id/result1" />
-
-    <TextView
-        android:id="@+id/pointJ2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="@+id/result2"
-        app:layout_constraintEnd_toEndOf="@+id/pointJ1"
-        app:layout_constraintStart_toStartOf="@+id/pointJ1"
-        app:layout_constraintTop_toTopOf="@+id/result2"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
     <TextView
         android:id="@+id/textView5"
@@ -74,11 +47,52 @@
         android:fontFamily="monospace"
         android:letterSpacing="?android:attr/disabledAlpha"
         android:text="Button war"
-        android:textColor="#FF0000"
+        android:textColor="#491313"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/result1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="96dp"
+        android:layout_marginTop="108dp"
+        android:text="Joueur 1   :"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/result1" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="72dp"
+        android:text="Joueur 2   :"
+        app:layout_constraintEnd_toEndOf="@+id/textView10"
+        app:layout_constraintStart_toStartOf="@+id/textView10"
+        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+    <TextView
+        android:id="@+id/nbrPt1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/textView10"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView10"
+        app:layout_constraintTop_toTopOf="@+id/textView10"
+        tools:text="text view" />
+
+    <TextView
+        android:id="@+id/nbrPt2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/textView12"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView12"
+        app:layout_constraintTop_toTopOf="@+id/textView12"
+        tools:text="TextView" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
