@@ -4,27 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
     android:foregroundTint="#00FFFFFF"
     tools:context=".GameScreen">
 
     <ProgressBar
         android:id="@+id/scoreBar1"
-        style="?android:attr/progressBarStyleHorizontal"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         android:layout_width="200dp"
         android:layout_height="25dp"
-        android:background="#7A0004"
-        android:backgroundTint="#F4E7E7"
         android:backgroundTintMode="screen"
-        android:progress="50"
         android:progressDrawable="@drawable/custom_progress_bar"
+        android:progressTint="#830404"
         app:guidelineUseRtl="false"
         app:layout_constraintBottom_toTopOf="@+id/score2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.417" />
+        app:layout_constraintVertical_bias="0.416" />
 
     <TextView
         android:id="@+id/textView"
@@ -62,11 +59,8 @@
         android:layout_width="200dp"
         android:layout_height="25dp"
         android:layout_marginTop="50dp"
-        android:background="#FFFFFF"
-        android:backgroundTint="#237708"
-        android:max="@integer/material_motion_duration_medium_1"
-        android:progress="55"
         android:progressDrawable="@drawable/custom_progress_bar"
+        android:progressTint="#76FF03"
         app:layout_constraintBottom_toTopOf="@+id/score2"
         app:layout_constraintEnd_toEndOf="@+id/gameTime"
         app:layout_constraintHorizontal_bias="0.496"
