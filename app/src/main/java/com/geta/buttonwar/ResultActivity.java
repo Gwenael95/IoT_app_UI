@@ -36,8 +36,8 @@ public class ResultActivity extends AppCompatActivity {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         button = findViewById(R.id.replay);
         result = findViewById(R.id.result1);
-        ptJ1 = findViewById(R.id.pointJ1);
-        ptJ2 = findViewById(R.id.pointJ2);
+        ptJ1 = findViewById(R.id.nbrPt1);
+        ptJ2 = findViewById(R.id.nbrPt2);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
