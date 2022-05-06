@@ -67,16 +67,13 @@ public class ResultActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        ptJ1.setText(Integer.toString(PtJoueur1));
-        ptJ2.setText(Integer.toString(PtJoueur2));
+        ptJ1.setText(Integer.toString(PtJoueur1) + " pts");
+        ptJ2.setText(Integer.toString(PtJoueur2) + " pts");
         if (PtJoueur1< PtJoueur2){
             result1.setText("Joueur 2 a gagné");
-            result2.setText("Joueur 1 a perdu");
         }else if(PtJoueur1> PtJoueur2){
             result1.setText("Joueur 1 a gagné");
-            result2.setText("Joueur 2 a perdu");
         }else{
-            result1.setText("Egalité");
             result2.setText("Egalité");
         }
 
